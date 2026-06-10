@@ -1,21 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
 
 :root {
-    --cor-de-fundo: #1E1E1E;
-    --verde: #6FFF57;
+    --cor-de-fundo: #0a0a0a;
+
+    /* cores das caixas, botões e textos (laranja escuro) */
+    --cor1: #3b0a0a;
+    --cor2: #2f2f2f;
+    --cor3: #120012;
+    --cor4: #b45a1f; /* laranja escuro */
+
+    --texto-destaque: #b45a1f;
     --branco: #FFFFFF;
-    --botao-ativo: #3A375E;
-    --botao-inativo: rgba(58, 55, 94, 0.5);
-    --texto-fundo: rgba(58, 55, 94, 0.3);
+
+    --botao-ativo: #1a0f0f;
+    --botao-inativo: rgba(20, 20, 20, 0.85);
+    --texto-fundo: rgba(10, 10, 10, 0.75);
 }
 
+/* ===== FUNDO VIVO VERMELHO ESCURO ===== */
 body {
-    background-color: var(--cor-de-fundo);
+    background: linear-gradient(-45deg, #2b0000, #2f2f2f, #4b0f0f, #2f2f2f, #120012);
+    background-size: 600% 600%;
+    animation: fundoVivo 12s ease infinite;
+
     color: var(--branco);
     font-family: 'Chakra Petch', sans-serif;
 }
 
+@keyframes fundoVivo {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 50% 100%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 50%; }
+}
 
+/* ===== CONTEÚDO PRINCIPAL ===== */
 .conteudo-principal {
     display: flex;
     flex-direction: column;
@@ -26,6 +46,7 @@ body {
     margin: 0 auto;
 }
 
+/* ===== TÍTULO ===== */
 .titulo-principal {
     text-align: left;
     width: 100%;
@@ -33,13 +54,13 @@ body {
 }
 
 .titulo-principal span {
-    color: var(--verde);
+    color: var(--cor4); /* laranja escuro */
 }
 
-
+/* ===== BOTÕES ===== */
 .botao {
     font-family: 'Chakra Petch', sans-serif;
-    background-color: var(--botao-inativo);
+    background: linear-gradient(135deg, rgba(30, 10, 10, 0.95), rgba(20, 20, 20, 0.9), rgba(40, 20, 10, 0.85));
     color: var(--branco);
     display: flex;
     justify-content: center;
@@ -47,10 +68,21 @@ body {
     font-size: 18px;
     align-items: center;
     width: 100%;
-    border-bottom: 4px solid var(--botao-ativo);
-    border-left: 2px solid var(--botao-ativo);
-    border-right: 2px solid var(--botao-ativo);
+    border-bottom: 4px solid rgba(180, 90, 31, 0.4); /* laranja escuro */
+    border-left: 2px solid rgba(180, 90, 31, 0.3);
+    border-right: 2px solid rgba(180, 90, 31, 0.3);
     border-top: none;
+    transition: 0.3s;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.botao:hover {
+    background: linear-gradient(135deg, rgba(60, 20, 20, 0.95), rgba(30, 30, 30, 0.9), rgba(80, 30, 10, 0.85));
+}
+
+.botao.ativo {
+    background: linear-gradient(135deg, #1a0f0f, #2a1a14, #120012);
+    border-bottom: 4px solid var(--cor4);
 }
 
 .botao:first-child {
@@ -61,17 +93,15 @@ body {
     display: block;
 }
 
-.botao.ativo {
-    background-color: var(--botao-ativo);
-    border-bottom: 4px solid var(--verde);
-}
-
+/* ===== ABAS ===== */
 .abas-textos {
-    background-color: var(--texto-fundo);
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(20, 10, 10, 0.75), rgba(15, 15, 15, 0.8));
     padding: 40px;
     border-radius: 0 0 40px 40px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
 }
 
+/* ===== TEXTO ===== */
 .aba-conteudo.ativo {
     display: block;
 }
@@ -83,14 +113,21 @@ body {
 .aba-conteudo-titulo-principal {
     font-size: 28px;
     text-align: center;
+    background: linear-gradient(90deg, var(--cor1), var(--cor4), var(--cor2), var(--cor3));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fluxoTexto 4s ease infinite;
 }
 
 .aba-conteudo-titulo-secundario {
     text-align: center;
-    color: var(--verde);
+    color: var(--texto-destaque); /* laranja escuro */
     text-transform: uppercase;
 }
 
+/* ===== CONTADOR ===== */
 .contador {
     display: flex;
     justify-content: center;
@@ -106,16 +143,27 @@ body {
 .contador-digito-numero {
     font-size: 80px;
     margin: 0;
-
+    background: linear-gradient(135deg, var(--cor2), var(--cor4), var(--cor1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fluxoTexto 3s ease infinite;
 }
 
 .contador-digito-texto {
-    color: var(--verde);
+    color: var(--texto-destaque); /* laranja escuro */
     font-size: 20px;
     margin: 0;
-
 }
 
+/* ===== ANIMAÇÕES ===== */
+@keyframes fluxoTexto {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== RESPONSIVO ===== */
 @media screen and (min-width: 768px) {
     .botoes {
         display: flex;
